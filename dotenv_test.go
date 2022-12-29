@@ -75,6 +75,7 @@ func TestSetEnvVarsOK(t *testing.T) {
 		{` VAR1`, "=", ` var1`},
 		{`"VAR2" `, "=", "var2 "},
 		{`VAR3	`, "=", "var3	"},
+		{"dsn", "=", "host=localhost user=user"},
 	}
 
 	for _, ev := range envVars {
