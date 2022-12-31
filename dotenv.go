@@ -42,9 +42,8 @@ func setEnvVars(r io.Reader) error {
 }
 
 func parseLine(s string) (string, string, error) {
-	s = strings.TrimSpace(s)
 	idx := strings.Index(s, "=")
-	if idx == -1 {
+	if idx == -1 || idx == 0 {
 		return "", "", fmt.Errorf("line does not have key/value assignment: %s", s)
 	}
 
@@ -64,8 +63,7 @@ func parseLine(s string) (string, string, error) {
 }
 
 func cleanString(s string) string {
-	s = strings.ReplaceAll(s, "\"", "")
-	s = strings.ReplaceAll(s, "\t", "")
 	s = strings.TrimSpace(s)
+	s = strings.ReplaceAll(s, "\"", "")
 	return s
 }

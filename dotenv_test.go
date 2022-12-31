@@ -48,6 +48,7 @@ func TestSetEnvVarsError(t *testing.T) {
 		{` VAR1`, "", ` var1`},
 		{`"" `, "=", "var2 "},
 		{`VAR3	`, "", "var3	"},
+		{"", "=", " "},
 	}
 
 	for _, ev := range envVars {
@@ -76,6 +77,7 @@ func TestSetEnvVarsOK(t *testing.T) {
 		{`"VAR2" `, "=", "var2 "},
 		{`VAR3	`, "=", "var3	"},
 		{"dsn", "=", "host=localhost user=user"},
+		{"a", "=", ""},
 	}
 
 	for _, ev := range envVars {
@@ -99,5 +101,4 @@ func TestSetEnvVarsOK(t *testing.T) {
 			t.Errorf("error when unsetting envrironment variable %s", cleanString(ev.Key))
 		}
 	}
-
 }
