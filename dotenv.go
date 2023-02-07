@@ -27,6 +27,12 @@ func setEnvVars(r io.Reader) error {
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
 		line := scanner.Text()
+
+		// check for comment
+		if strings.HasPrefix(line, "#") {
+			continue
+		}
+
 		key, value, err := parseLine(line)
 		if err != nil {
 			return err
